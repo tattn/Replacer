@@ -1,0 +1,28 @@
+//
+//  Framework_XCTest.xcconfig
+//  Replacer
+//
+//  Created by Tatsuya Tanaka on 2017/02/12.
+//  Copyright © 2017年 tattn. All rights reserved.
+//
+
+#include "Base_XCTest.xcconfig"
+
+// OSX
+FRAMEWORK_VERSION[sdk=macosx*]                = A
+COMBINE_HIDPI_IMAGES[sdk=macosx*]             = YES
+
+// iOS
+CODE_SIGN_IDENTITY[sdk=iphoneos*]             = iPhone Developer
+TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]  = 1,2
+TARGETED_DEVICE_FAMILY[sdk=iphone*]           = 1,2
+
+// TV
+TARGETED_DEVICE_FAMILY[sdk=appletvsimulator*] = 3
+TARGETED_DEVICE_FAMILY[sdk=appletv*]          = 3
+
+ENABLE_BITCODE[sdk=macosx*]                   = NO
+ENABLE_BITCODE[sdk=iphonesimulator*]          = NO
+ENABLE_BITCODE[sdk=iphone*]                   = NO
+ENABLE_BITCODE[sdk=appletvsimulator*]         = NO
+ENABLE_BITCODE[sdk=appletv*]                  = NO

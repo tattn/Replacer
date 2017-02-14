@@ -1,0 +1,3 @@
+# git "git@github.com:tattn/Replacer.git"
+git "~/work/iOS/Mokei/Replacer"
+github "Alamofire/Alamofire"
