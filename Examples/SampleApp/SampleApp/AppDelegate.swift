@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         replaceInstance(#selector(UIViewController.viewWillAppear(_:)),
-                                 of: UIViewController.self,
-                                 with: #selector(UIViewController.orig_viewWillAppear(_:)),
-                                 of: UIViewController.self)
+                        of: UIViewController.self,
+                        with: #selector(UIViewController.orig_viewWillAppear(_:)),
+                        of: UIViewController.self)
 
         return true
     }

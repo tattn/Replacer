@@ -17,10 +17,10 @@ import TestReplacer
 class SampleTests: XCTestCase {
     func testJSONFile() {
         // register a stub
-        self.stub.url("echo.jsontest.com").json(["test": "data"])
+        self.urlStub.url("echo.jsontest.com").json(["test": "data"])
         
         // load sample.json & register a stub.
-        self.stub.json(filename: "sample")
+        self.urlStub.json(filename: "sample")
 
         let expectation = self.expectation(description: "")
         
@@ -45,7 +45,7 @@ class MokeiSpecs: QuickSpec {
             context("using JSON file") {
                 beforeEach() {
                     // wait for 1.5s
-                    self.stub.url("echo.jsontest.com/[a-z]+/.*")
+                    self.urlStub.url("echo.jsontest.com/[a-z]+/.*")
                         .httpMethod(.post)
                         .json(["test": "data"])
                         .delay(1.5)
@@ -69,6 +69,38 @@ class MokeiSpecs: QuickSpec {
 }
 ```
 
+## Method Swizzling
+
+```swift
+import UIKit
+import Replacer
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    var window: UIWindow?
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+        Replacer.replaceInstance(#selector(UIViewController.viewWillAppear(_:)),
+                                 of: UIViewController.self,
+                                 with: #selector(UIViewController.orig_viewWillAppear(_:)),
+                                 of: UIViewController.self)
+
+        return true
+    }
+}
+
+extension UIViewController {
+    func orig_viewWillAppear(_ animated: Bool) {
+        orig_viewWillAppear(animated)
+
+        print("swizzled")
+    }
+}
+
+```
+
 # Installation
 
 ## Carthage
@@ -85,7 +117,7 @@ pod 'Replacer'
 
 # Documentation
 
-- [Stub Reference](https://github.com/tattn/Replacer/blob/master/Documentation/Reference.md)
+- [Stub Reference](https://github.com/tattn/Replacer/blob/master/Documentations/Reference.md)
 
 # Contributing
 

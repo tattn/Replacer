@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.source = { :git => 'https://github.com/tattn/Replacer.git', :tag => s.version }
   s.ios.deployment_target = '8.0'
   s.framework = 'XCTest', 'Replacer'
-  s.dependency 'Replacer'
+  s.dependency 'Replacer', "= #{s.version}"
   s.source_files = 'Sources/TestReplacer/*.swift'
   s.license = {
     :type => "MIT",
