@@ -39,7 +39,7 @@ class SampleTests: XCTestCase {
 ### Quick & Alamofire
 
 ```swift
-class MokeiSpecs: QuickSpec {
+class SampleSpecs: QuickSpec {
     override func spec() {
         describe("Quick compatibility test") {
             context("using JSON file") {
