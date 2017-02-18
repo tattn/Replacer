@@ -167,6 +167,7 @@
 				244D6FE71E4F9D99007AE072 /* Info.plist */,
 				244D6FE51E4F9D99007AE072 /* TestReplacerTests.swift */,
 				244D70581E50C6EE007AE072 /* sample.json */,
+				243C72451E589EAC00D8BBF5 /* Alamofire.framework */,
 			);
 			path = TestReplacerTests;
 			sourceTree = "<group>";
@@ -186,7 +187,6 @@
 		248E453B1E4F93D3009135F0 = {
 			isa = PBXGroup;
 			children = (
-				243C72451E589EAC00D8BBF5 /* Alamofire.framework */,
 				244D70291E4FAFA6007AE072 /* Configurations */,
 				248E45461E4F93D4009135F0 /* Products */,
 				244D6FD01E4F95E0007AE072 /* Sources */,

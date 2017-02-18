@@ -1,12 +1,16 @@
 Pod::Spec.new do |s|
   s.name = 'TestReplacer'
-  s.version = '0.0.1'
+  s.version = '0.0.2'
   s.summary = 'An easy-to-use library to stub HTTP requests using URLSession and to swizzle methods'
   s.homepage = 'https://github.com/tattn/Replacer'
   s.social_media_url = 'https://github.com/tattn/Replacer'
   s.authors = { 'Tatsuya Tanaka (tattn)' => 'tanakasan2525@gmail.com' }
   s.source = { :git => 'https://github.com/tattn/Replacer.git', :tag => s.version }
   s.ios.deployment_target = '8.0'
+  s.osx.deployment_target = '10.10'
+  if s.respond_to?(:tvos)
+    s.tvos.deployment_target = '9.0'
+  end
   s.framework = 'XCTest', 'Replacer'
   s.dependency 'Replacer', "= #{s.version}"
   s.source_files = 'Sources/TestReplacer/*.swift'
