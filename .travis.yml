@@ -1,0 +1,21 @@
+branches:
+  only: 
+    - master
+
+matrix:
+  include:
+    - os: osx
+      language: objective-c
+      osx_image: xcode8
+      script:
+        - set -o pipefail
+        - pod lib lint --quick
+        - xcodebuild build-for-testing test-without-building -project Replacer.xcodeproj -scheme Replacer -configuration Release ENABLE_TESTABILITY=YES ONLY_ACTIVE_ARCH=NO | xcpretty - c
+        - xcodebuild build-for-testing test-without-building -project Replacer.xcodeproj -scheme Replacer -configuration Release -sdk iphonesimulator -destination "name=iPhone 7" ENABLE_TESTABILITY=YES ONLY_ACTIVE_ARCH=NO | xcpretty - c
+        - xcodebuild build-for-testing test-without-building -project Replacer.xcodeproj -scheme Replacer -configuration Release -sdk macosx ENABLE_TESTABILITY=YES ONLY_ACTIVE_ARCH=NO | xcpretty - c
+        - xcodebuild build-for-testing test-without-building -project Replacer.xcodeproj -scheme Replacer -configuration Release -sdk appletvsimulator -destination "name=Apple TV 1080p" ENABLE_TESTABILITY=YES ONLY_ACTIVE_ARCH=NO | xcpretty - c
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email: false
