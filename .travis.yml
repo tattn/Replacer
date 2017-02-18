@@ -32,6 +32,15 @@ matrix:
     - env: JOB=xcode SCHEME=TestReplacer XCODE_OPTION="-sdk iphonesimulator -destination \"name=iPhone 7,OS=9.0\""
     - env: JOB=xcode SCHEME=TestReplacer XCODE_OPTION="-sdk appletvsimulator -destination \"name=Apple TV 1080p\""
 
+    - env: JOB=swiftpm
+      os: osx
+      language: generic
+      before_install:
+        - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh)"
+      script:
+        - swift build
+        - swift test -Xswiftc -DSWIFTPM
+
 script:
   - set -o pipefail
   - xcodebuild $ACTION -workspace "$WORKSPACE" -scheme "$SCHEME" $XCODE_OPTION -configuration "$CONFIG" ENABLE_TESTABILITY=YES | xcpretty

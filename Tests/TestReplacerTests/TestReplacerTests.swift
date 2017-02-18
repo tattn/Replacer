@@ -14,7 +14,7 @@ class TestReplacerTests: XCTestCase {
 
     var url = URL(string: "http://echo.jsontest.com/key/value/one/two")!
 
-    #if !SPM // https://bugs.swift.org/browse/SR-2866
+    #if !SWIFTPM // https://bugs.swift.org/browse/SR-2866
     func testJSONFile() {
         self.urlStub.url("echo.jsontest.com").json(filename: "sample", bundle: nil)
 
