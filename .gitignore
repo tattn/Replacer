@@ -54,7 +54,8 @@ xcuserdata/
 *.xccheckout
 *.xcscmblueprint
 
-Carthage
+Carthage/Build
+Examples/SampleApp/Carthage
 
 # Examples
 

@@ -1,21 +1,47 @@
+language: objective-c
+osx_image: xcode8.2
+
+env:
+  global:
+    - LC_CTYPE=en_US.UTF-8
+    - WORKSPACE=Replacer.xcworkspace
+    - CONFIG=Release
+    - ACTION="build-for-testing test-without-building"
+
 branches:
   only: 
     - master
 
+cache:
+  directories:
+    - Carthage
+
 matrix:
   include:
-    - os: osx
-      language: objective-c
-      osx_image: xcode8
+    - env: JOB=pod_lint
       script:
-        - set -o pipefail
         - pod lib lint --quick
-        - xcodebuild build-for-testing test-without-building -project Replacer.xcodeproj -scheme Replacer -configuration Release ENABLE_TESTABILITY=YES ONLY_ACTIVE_ARCH=NO | xcpretty - c
-        - xcodebuild build-for-testing test-without-building -project Replacer.xcodeproj -scheme Replacer -configuration Release -sdk iphonesimulator -destination "name=iPhone 7" ENABLE_TESTABILITY=YES ONLY_ACTIVE_ARCH=NO | xcpretty - c
-        - xcodebuild build-for-testing test-without-building -project Replacer.xcodeproj -scheme Replacer -configuration Release -sdk macosx ENABLE_TESTABILITY=YES ONLY_ACTIVE_ARCH=NO | xcpretty - c
-        - xcodebuild build-for-testing test-without-building -project Replacer.xcodeproj -scheme Replacer -configuration Release -sdk appletvsimulator -destination "name=Apple TV 1080p" ENABLE_TESTABILITY=YES ONLY_ACTIVE_ARCH=NO | xcpretty - c
-      after_success:
-        - bash <(curl -s https://codecov.io/bash)
+
+    - env: JOB=xcode SCHEME=Replacer XCODE_OPTION=""
+    - env: JOB=xcode SCHEME=Replacer XCODE_OPTION="-sdk macosx"
+    - env: JOB=xcode SCHEME=Replacer XCODE_OPTION="-sdk iphonesimulator -destination \"name=iPhone 7\""
+    - env: JOB=xcode SCHEME=Replacer XCODE_OPTION="-sdk appletvsimulator -destination \"name=Apple TV 1080p\""
+
+    - env: JOB=xcode SCHEME=TestReplacer XCODE_OPTION="-destination \"OS=9.0\""
+    - env: JOB=xcode SCHEME=TestReplacer XCODE_OPTION="-sdk macosx"
+    - env: JOB=xcode SCHEME=TestReplacer XCODE_OPTION="-sdk iphonesimulator -destination \"name=iPhone 7,OS=9.0\""
+    - env: JOB=xcode SCHEME=TestReplacer XCODE_OPTION="-sdk appletvsimulator -destination \"name=Apple TV 1080p\""
+
+script:
+  - set -o pipefail
+  - xcodebuild $ACTION -workspace "$WORKSPACE" -scheme "$SCHEME" $XCODE_OPTION -configuration "$CONFIG" ENABLE_TESTABILITY=YES | xcpretty
+
+after_success:
+- |
+  if [ "$JOB" == "xcode" ] && [ -z "$XCODE_OPTION" ]; then
+    bash <(curl -s https://codecov.io/bash)
+  fi
+  sleep 10
 
 notifications:
   email: false
