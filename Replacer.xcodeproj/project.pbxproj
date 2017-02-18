@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		243C724A1E58D85400D8BBF5 /* SwiftLint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 243C724B1E58D85400D8BBF5 /* Build configuration list for PBXAggregateTarget "SwiftLint" */;
+			buildPhases = (
+				243C724E1E58D87600D8BBF5 /* Run Script - SwiftLint */,
+			);
+			dependencies = (
+			);
+			name = SwiftLint;
+			productName = SwiftLint;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		243C72461E589EAC00D8BBF5 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 243C72451E589EAC00D8BBF5 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		244D6FCB1E4F9494007AE072 /* Replacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244D6FC81E4F9494007AE072 /* Replacer.swift */; };
@@ -244,7 +258,6 @@
 				244D6FD41E4F9D99007AE072 /* Frameworks */,
 				244D6FD51E4F9D99007AE072 /* Headers */,
 				244D6FD61E4F9D99007AE072 /* Resources */,
-				243C72491E58D73F00D8BBF5 /* Run Script - SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -282,7 +295,6 @@
 				248E45411E4F93D3009135F0 /* Frameworks */,
 				248E45421E4F93D3009135F0 /* Headers */,
 				248E45431E4F93D3009135F0 /* Resources */,
-				243C72481E58D6FB00D8BBF5 /* Run Script - SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -321,6 +333,10 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = tattn;
 				TargetAttributes = {
+					243C724A1E58D85400D8BBF5 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
 					244D6FD71E4F9D99007AE072 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
@@ -356,6 +372,7 @@
 				248E454D1E4F93D4009135F0 /* ReplacerTests */,
 				244D6FD71E4F9D99007AE072 /* TestReplacer */,
 				244D6FDF1E4F9D99007AE072 /* TestReplacerTests */,
+				243C724A1E58D85400D8BBF5 /* SwiftLint */,
 			);
 		};
 /* End PBXProject section */
@@ -393,21 +410,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		243C72481E58D6FB00D8BBF5 /* Run Script - SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script - SwiftLint";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
-		};
-		243C72491E58D73F00D8BBF5 /* Run Script - SwiftLint */ = {
+		243C724E1E58D87600D8BBF5 /* Run Script - SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -476,6 +479,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		243C724C1E58D85400D8BBF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		243C724D1E58D85400D8BBF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		244D6FEA1E4F9D99007AE072 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 244D70331E5041F6007AE072 /* Framework_XCTest.xcconfig */;
@@ -747,6 +764,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		243C724B1E58D85400D8BBF5 /* Build configuration list for PBXAggregateTarget "SwiftLint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				243C724C1E58D85400D8BBF5 /* Debug */,
+				243C724D1E58D85400D8BBF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		244D6FE91E4F9D99007AE072 /* Build configuration list for PBXNativeTarget "TestReplacer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
