@@ -3,8 +3,10 @@ Replacer
 
 [![Build Status](https://travis-ci.org/tattn/Replacer.svg?branch=master)](https://travis-ci.org/tattn/Replacer)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Version](https://img.shields.io/cocoapods/v/Replacer.svg)](http://cocoadocs.org/docsets/Replacer)
-[![Platform](https://img.shields.io/cocoapods/p/Replacer.svg)](http://cocoadocs.org/docsets/Replacer)
+[![Version](https://img.shields.io/cocoapods/v/Replacer.svg)](http://cocoapods.org/pods/Replacer)
+[![Platform](https://img.shields.io/cocoapods/p/Replacer.svg)](http://cocoapods.org/pods/Replacer)
+[![License](https://img.shields.io/cocoapods/l/Replacer.svg)](http://cocoapods.org/pods/Replacer)
+[![Swift Version](https://img.shields.io/badge/Swift-3-F16D39.svg)](https://developer.apple.com/swift)
 
 
 Replacer is an easy-to-use library to stub HTTP requests and to swizzle methods.
