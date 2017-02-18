@@ -1,0 +1,20 @@
+disabled_rules:
+  - force_cast
+  - line_length
+  - trailing_whitespace
+  - nesting
+  - opening_brace
+  - valid_docs
+  - type_name
+  - trailing_comma
+  - mark
+  - variable_name
+  - vertical_whitespace
+  - function_parameter_count
+
+excluded:
+  - Carthage
+  - Packages
+  - Tests
+  - Examples
+

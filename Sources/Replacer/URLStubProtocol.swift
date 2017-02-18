@@ -10,7 +10,7 @@ import Foundation
 
 public class URLStubProtocol: URLProtocol {
 
-    override open class func canInit(with request:URLRequest) -> Bool {
+    override open class func canInit(with request: URLRequest) -> Bool {
         return URLStubManager.shared.findStub(by: request) != nil
     }
 
