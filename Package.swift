@@ -1,18 +1,34 @@
-import PackageDescription
+// swift-tools-version:5.0
 
-let libraries = [
-    Target(name: "Replacer"),
-    Target(name: "TestReplacer",
-           dependencies: [
-               .Target(name: "Replacer"),
-           ]
-    ),
-]
+import PackageDescription
 
 let package = Package(
     name: "Replacer",
-    targets: libraries,
+    products: [
+        .library(
+            name: "Replacer",
+            targets: ["Replacer"]),
+        .library(
+            name: "TestReplacer",
+            targets: ["TestReplacer"]),
+    ],
     dependencies: [
-        .Package(url: "https://github.com/Alamofire/Alamofire.git", majorVersion: 4),
+        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "4.9.0"),
+    ],
+    targets: [
+        .target(
+            name: "Replacer",
+            dependencies: []),
+        .testTarget(
+            name: "ReplacerTests",
+            dependencies: ["Replacer", "Alamofire"],
+            path: "Tests/ReplacerTests"),
+        .target(
+            name: "TestReplacer",
+            dependencies: ["Replacer"]),
+        // .testTarget(
+        //     name: "TestReplacerTests",
+        //     dependencies: ["TestReplacer"],
+        //     path: "Tests/TestReplacerTests"),
     ]
 )

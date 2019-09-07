@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode8.2
+osx_image: xcode10.2
 
 env:
   global:
@@ -24,26 +24,31 @@ matrix:
 
     - env: JOB=xcode SCHEME=Replacer XCODE_OPTION=""
     - env: JOB=xcode SCHEME=Replacer XCODE_OPTION="-sdk macosx"
-    - env: JOB=xcode SCHEME=Replacer XCODE_OPTION="-sdk iphonesimulator -destination \"name=iPhone 7\""
-    - env: JOB=xcode SCHEME=Replacer XCODE_OPTION="-sdk appletvsimulator -destination \"name=Apple TV 1080p\""
+    - env: JOB=xcode SCHEME=Replacer DESTINATION="OS=12.2,name=iPhone XS" XCODE_OPTION="-sdk iphonesimulator"
+    - env: JOB=xcode SCHEME=Replacer DESTINATION="OS=12.2,name=Apple TV 4K" XCODE_OPTION="-sdk appletvsimulator"
 
-    - env: JOB=xcode SCHEME=TestReplacer XCODE_OPTION="-destination \"OS=9.0\""
+    - env: JOB=xcode SCHEME=TestReplacer DESTINATION="OS=11.4,name=iPhone X" XCODE_OPTION=""
     - env: JOB=xcode SCHEME=TestReplacer XCODE_OPTION="-sdk macosx"
-    - env: JOB=xcode SCHEME=TestReplacer XCODE_OPTION="-sdk iphonesimulator -destination \"name=iPhone 7,OS=9.0\""
-    - env: JOB=xcode SCHEME=TestReplacer XCODE_OPTION="-sdk appletvsimulator -destination \"name=Apple TV 1080p\""
+    - env: JOB=xcode SCHEME=TestReplacer DESTINATION="OS=11.4,name=iPhone X" XCODE_OPTION="-sdk iphonesimulator"
+    - env: JOB=xcode SCHEME=TestReplacer DESTINATION="OS=12.2,name=Apple TV 4K" XCODE_OPTION="-sdk appletvsimulator"
 
     - env: JOB=swiftpm
       os: osx
       language: generic
-      before_install:
-        - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh)"
       script:
         - swift build
         - swift test -Xswiftc -DSWIFTPM
 
 script:
   - set -o pipefail
-  - xcodebuild $ACTION -workspace "$WORKSPACE" -scheme "$SCHEME" $XCODE_OPTION -configuration "$CONFIG" ENABLE_TESTABILITY=YES | xcpretty
+  - if [ -v DESTINATION ]; then
+      xcodebuild $ACTION -workspace "$WORKSPACE" -scheme "$SCHEME" $XCODE_OPTION -destination "$DESTINATION" -configuration "$CONFIG" ENABLE_TESTABILITY=YES | xcpretty;
+    else
+      xcodebuild $ACTION -workspace "$WORKSPACE" -scheme "$SCHEME" $XCODE_OPTION -configuration "$CONFIG" ENABLE_TESTABILITY=YES | xcpretty;
+    fi
+
+before_script:
+  - carthage bootstrap --cache-builds
 
 after_success:
 - |
