@@ -10,7 +10,7 @@ import Foundation
 
 extension URLSessionConfiguration {
 
-    dynamic class var mock: URLSessionConfiguration {
+    @objc dynamic class var mock: URLSessionConfiguration {
         let configuration = self.mock
         configuration.protocolClasses?.insert(URLStubProtocol.self, at: 0)
         return configuration
