@@ -26,7 +26,7 @@ class TestReplacerTests: XCTestCase {
             expectation.fulfill()
         }.resume()
 
-        self.waitForExpectations(timeout: 0.02, handler: nil)
+        self.waitForExpectations(timeout: 0.05, handler: nil)
     }
     #endif
 
@@ -41,7 +41,7 @@ class TestReplacerTests: XCTestCase {
             expectation.fulfill()
         }.resume()
 
-        self.waitForExpectations(timeout: 0.02, handler: nil)
+        self.waitForExpectations(timeout: 0.05, handler: nil)
     }
 
     func testAlamofire() {
@@ -55,7 +55,7 @@ class TestReplacerTests: XCTestCase {
             expectation.fulfill()
         }
 
-        self.waitForExpectations(timeout: 0.02, handler: nil)
+        self.waitForExpectations(timeout: 0.05, handler: nil)
     }
 
     func testTimeout() {
@@ -96,7 +96,7 @@ class TestReplacerTests: XCTestCase {
             expectation2.fulfill()
         }
 
-        self.waitForExpectations(timeout: 0.02, handler: nil)
+        self.waitForExpectations(timeout: 0.05, handler: nil)
     }
 
     func testHTTPMethod() {
@@ -118,7 +118,7 @@ class TestReplacerTests: XCTestCase {
             expectation2.fulfill()
         }
 
-        self.waitForExpectations(timeout: 0.02, handler: nil)
+        self.waitForExpectations(timeout: 0.05, handler: nil)
     }
 
     func testRequestBlock() {
@@ -135,7 +135,7 @@ class TestReplacerTests: XCTestCase {
             expectation.fulfill()
         }
 
-        self.waitForExpectations(timeout: 0.02, handler: nil)
+        self.waitForExpectations(timeout: 0.05, handler: nil)
     }
 
     func testStatusCode() {
@@ -154,6 +154,6 @@ class TestReplacerTests: XCTestCase {
             expectation2.fulfill()
         }
 
-        self.waitForExpectations(timeout: 0.02, handler: nil)
+        self.waitForExpectations(timeout: 0.05, handler: nil)
     }
 }

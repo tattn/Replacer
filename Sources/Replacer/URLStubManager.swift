@@ -25,24 +25,24 @@ public final class URLStubManager {
     private init() {}
 
     private func swizzleDefaultSessionConfiguration() {
-        let defaultSessionConfiguration = class_getClassMethod(URLSessionConfiguration.self, #selector(getter: URLSessionConfiguration.default))
-        let swizzledDefaultSessionConfiguration = class_getClassMethod(URLSessionConfiguration.self, #selector(getter: URLSessionConfiguration.mock))
+        let defaultSessionConfiguration = class_getClassMethod(URLSessionConfiguration.self, #selector(getter: URLSessionConfiguration.default))!
+        let swizzledDefaultSessionConfiguration = class_getClassMethod(URLSessionConfiguration.self, #selector(getter: URLSessionConfiguration.mock))!
         method_exchangeImplementations(defaultSessionConfiguration, swizzledDefaultSessionConfiguration)
     }
 }
 
 public extension URLStubManager {
 
-    public func register(_ stub: URLStub) {
+    func register(_ stub: URLStub) {
         stubs.append(stub)
         URLProtocol.registerClass(URLStubProtocol.self)
     }
 
-    public func unregisterAllStubs() {
+    func unregisterAllStubs() {
         stubs = []
     }
 
-    public func findStub(by request: URLRequest) -> URLStub? {
+    func findStub(by request: URLRequest) -> URLStub? {
         if let url = request.url?.absoluteString {
             return stubs
                 .filter { request.httpMethod == $0._method.rawValue }

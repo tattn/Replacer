@@ -23,13 +23,15 @@ class ReplacerTests: XCTestCase {
     func testReplaceStaticMethod() {
 
         class A {
-            dynamic class func a() -> String { return "a" }
+            @objc dynamic class func a() -> String { return "a" }
         }
 
         class B {
-            dynamic class func b() -> String { return "b" }
+            @objc dynamic class func b() -> String { return "b" }
         }
 
+        XCTAssertEqual(A.a(), "a")
+        
         replaceStatic(#selector(A.a), of: A.self, with: #selector(B.b), of: B.self)
 
         XCTAssertEqual(A.a(), "b")
@@ -44,11 +46,11 @@ class ReplacerTests: XCTestCase {
     func testReplaceInstanceMethod() {
 
         class A {
-            dynamic func a() -> String { return "a" }
+            @objc dynamic func a() -> String { return "a" }
         }
 
         class B {
-            dynamic func b() -> String { return "b" }
+            @objc dynamic func b() -> String { return "b" }
         }
 
         replaceInstance(#selector(A.a), of: A.self, with: #selector(B.b), of: B.self)

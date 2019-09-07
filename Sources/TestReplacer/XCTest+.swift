@@ -13,13 +13,13 @@ import XCTest
 extension XCTest {
 
     private static let swizzleTearDown: Void = {
-        let tearDown = class_getInstanceMethod(XCTest.self, #selector(XCTest.tearDown))
-        let replacerTearDown = class_getInstanceMethod(XCTest.self, #selector(XCTest.autoResetTearDown))
+        let tearDown = class_getInstanceMethod(XCTest.self, #selector(XCTest.tearDown))!
+        let replacerTearDown = class_getInstanceMethod(XCTest.self, #selector(XCTest.autoResetTearDown))!
         method_exchangeImplementations(tearDown, replacerTearDown)
     }()
 
     /// TearDown which resets all configurations automatically.
-    private dynamic func autoResetTearDown() {
+    @objc private dynamic func autoResetTearDown() {
         autoResetTearDown()
 
         URLStubManager.shared.unregisterAllStubs()

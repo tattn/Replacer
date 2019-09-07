@@ -72,7 +72,7 @@ public class URLStub {
     private func json(_ json: Any) -> Self {
         do {
             _data = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-        } catch (let error) {
+        } catch {
             preconditionFailure("Failed to load a JSON: \(error.localizedDescription)")
         }
         return self
@@ -129,7 +129,7 @@ public class URLStub {
 
 public extension URLStub {
     /// HTTP method definitions.
-    public enum HTTPMethod: String {
+    enum HTTPMethod: String {
         case get     = "GET"
         case post    = "POST"
         case put     = "PUT"
