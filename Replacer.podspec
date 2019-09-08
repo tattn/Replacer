@@ -6,6 +6,7 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://github.com/tattn/Replacer'
   s.authors = { 'Tatsuya Tanaka (tattn)' => 'tanakasan2525@gmail.com' }
   s.source = { :git => 'https://github.com/tattn/Replacer.git', :tag => s.version }
+  s.swift_versions = ['5.0']
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.10'
   if s.respond_to?(:watchos)
