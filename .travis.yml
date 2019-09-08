@@ -13,6 +13,7 @@ branches:
     - master
 
 cache:
+  bundler: true
   directories:
     - Carthage
 
@@ -20,6 +21,7 @@ matrix:
   include:
     - env: JOB=pod_lint
       script:
+        - bundle
         - pod lib lint --quick
 
     - env: JOB=xcode SCHEME=Replacer XCODE_OPTION=""
